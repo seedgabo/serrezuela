@@ -1,0 +1,11 @@
+page-tickets {
+    .en.curso {
+        background-color: color($colors, 'secondary');
+    }
+    .vencido {
+        background-color: color($colors, 'danger');
+    }
+    .abierto {
+        background-color: #4848ff;
+    }
+}

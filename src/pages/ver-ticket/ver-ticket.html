@@ -1,0 +1,43 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>Ticket # {{ticket.id}}</ion-title>
+        <ion-buttons end>
+            <button ion-button (click)="options()" icon-only>
+              <ion-icon name="more"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+
+</ion-header>
+<ion-content>
+    <div padding>
+        <h3>{{ticket.titulo}}</h3>
+        <div style="float:right" text-right>
+            <ion-badge [ngClass]="ticket.estado">{{ticket.estado}}</ion-badge>
+        </div>
+        <div [innerHTML]="ticket.contenido"></div>
+    </div>
+    <ion-list inset>
+        <ion-item>
+            <ion-label floating>Agregar Seguimiento</ion-label>
+            <ion-textarea [(ngModel)]="seguimiento"></ion-textarea>
+        </ion-item>
+        <button ion-button [disabled]="disabled" full (click)="addSeguimiento()" *ngIf="seguimiento.length>1">Agregar</button>
+        <ion-list-header>
+            <span ion-text color="primary">
+              Seguimientos
+            </span>
+        </ion-list-header>
+        <ion-item *ngFor="let comentario of comentarioFilters(); let i =index">
+            <p>
+                {{ comentario.texto }}
+            </p>
+            <div text-right *ngIf="comentario.user">
+                {{comentario.user.nombre}}
+            </div>
+            <button (click)="deleteComentario(comentario,i)" ion-button item-right icon-only color="danger" clear *ngIf="comentario.user && comentario.user.id === api.user.id">
+              <ion-icon name="trash"></ion-icon>
+            </button>
+        </ion-item>
+    </ion-list>
+</ion-content>
