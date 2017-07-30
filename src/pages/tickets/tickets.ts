@@ -9,6 +9,7 @@ import { VerTicketPage } from "../ver-ticket/ver-ticket";
   templateUrl: 'tickets.html',
 })
 export class TicketsPage {
+  query = "";
   constructor(public navCtrl: NavController, public navParams: NavParams, public api: Api) {
 
   }
@@ -16,6 +17,7 @@ export class TicketsPage {
 
     this.api.get('categorias_tickets')
       .then((cats: any) => {
+        console.log(cats);
         this.api.categorias = cats;
       })
       .catch(console.error)
@@ -28,6 +30,12 @@ export class TicketsPage {
       });
   }
 
+  filter() {
+    if (this.query === "") {
+      return this.api.tickets;
+    }
+
+  }
   verTicket(ticket) {
     this.navCtrl.push(VerTicketPage, { ticket: ticket });
   }

@@ -11,6 +11,7 @@ export class AddTicketPage {
   categorias = [];
   constructor(public navCtrl: NavController, public navParams: NavParams, public api: Api) {
     this.ticket = navParams.get('ticket');
+    this.ticket = navParams.get('categorias');
     if (!this.ticket)
       this.ticket = { titulo: '', contenido: '', user_id: this.api.user.id, categoria_id: 1, estado: 'abierto' }
   }
@@ -34,6 +35,11 @@ export class AddTicketPage {
         })
         .catch(console.error)
     }
+  }
+
+  askFile() {
+    var filer: any = document.querySelector("#input-file")
+    filer.click();
   }
 
 }

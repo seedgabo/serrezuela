@@ -24,12 +24,15 @@
                 </ion-option>
             </ion-select>
         </ion-item>
+        <input id="input-file" type="file" style="display:none">
+        <button ion-button icon-only large full color="favorite">
+          <ion-icon name="camera" large></ion-icon>
+        </button>
 
     </ion-list>
 </ion-content>
 <ion-footer>
     <ion-toolbar>
         <button ion-button (click)="save()" full large>Guardar</button>
-
     </ion-toolbar>
 </ion-footer>
