@@ -21,6 +21,7 @@ export class TicketsPage {
         this.api.categorias = cats;
       })
       .catch(console.error)
+
   }
   ionViewDidEnter() {
     this.api.get('tickets?with[]=categoria&with[]=user&with[]=guardian&where[user_id]=' + this.api.user.id)
@@ -34,7 +35,12 @@ export class TicketsPage {
     if (this.query === "") {
       return this.api.tickets;
     }
-
+    return this.api.tickets.filter((t) => {
+      return t.titulo.toLowerCase().indexOf(this.query.toLowerCase()) > -1 ||
+        t.contenido.toLowerCase().indexOf(this.query.toLowerCase()) > -1 ||
+        t.estado.toLowerCase().indexOf(this.query.toLowerCase()) > -1 ||
+        (t.categoria && t.categoria.nombre.toLowerCase().indexOf(this.query.toLowerCase()) > -1)
+    });
   }
   verTicket(ticket) {
     this.navCtrl.push(VerTicketPage, { ticket: ticket });
@@ -43,5 +49,7 @@ export class TicketsPage {
   addTicket() {
     this.navCtrl.push(AddTicketPage);
   }
+
+
 
 }

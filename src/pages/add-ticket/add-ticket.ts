@@ -9,6 +9,7 @@ import { Api } from "../../providers/api";
 export class AddTicketPage {
   ticket;
   categorias = [];
+  image;
   constructor(public navCtrl: NavController, public navParams: NavParams, public api: Api) {
     this.ticket = navParams.get('ticket');
     this.ticket = navParams.get('categorias');
@@ -41,5 +42,11 @@ export class AddTicketPage {
     var filer: any = document.querySelector("#input-file")
     filer.click();
   }
-
+  verFile(event) {
+    var reader: any = new FileReader();
+    reader.readAsDataURL(event.target.files[0])
+    reader.onload = (result) => {
+      this.image = result.target.result;
+    };
+  }
 }

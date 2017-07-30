@@ -8,11 +8,11 @@
     </ion-navbar>
 
     <ion-toolbar>
-        <ion-searchbar></ion-searchbar>
+        <ion-searchbar [(ngModel)]="query"></ion-searchbar>
     </ion-toolbar>
 </ion-header>
 <ion-content padding>
-    <ion-card (click)="verTicket(ticket)" *ngFor="let ticket of api.tickets">
+    <ion-card (click)="verTicket(ticket)" *ngFor="let ticket of filter()">
         <ion-card-content>
             <ion-card-title ion-text color="primary">
                 {{ticket.titulo}}

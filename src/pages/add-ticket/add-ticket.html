@@ -24,10 +24,13 @@
                 </ion-option>
             </ion-select>
         </ion-item>
-        <input id="input-file" type="file" style="display:none">
-        <button ion-button icon-only large full color="favorite">
-          <ion-icon name="camera" large></ion-icon>
-        </button>
+        <input id="input-file" type="file" style="display:none" accept="image/*" (change)="verFile($event)">
+        <div text-center>
+            <img [src]="image" *ngIf="image" style="height:100px;" alt="">
+            <button ion-button icon-only large full color="light" (click)="askFile()" *ngIf="!image">
+            <ion-icon name="camera" large></ion-icon>
+          </button>
+        </div>
 
     </ion-list>
 </ion-content>
