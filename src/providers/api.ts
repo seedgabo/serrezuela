@@ -20,7 +20,7 @@ moment.locale('es');
 @Injectable()
 export class Api {
   sound: HTMLAudioElement;
-  url = "http://localhost/newton/public/";
+  url = "http://newton.eycproveedores.com/serrezuela/public/";
   username = "";
   password = "";
   user;
