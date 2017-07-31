@@ -15,7 +15,7 @@ export class TicketsPage {
   }
   ionViewDidLoad() {
 
-    this.api.get('categorias_tickets')
+    this.api.get('categorias_tickets?where[parent_id]=129')
       .then((cats: any) => {
         console.log(cats);
         this.api.categorias = cats;
