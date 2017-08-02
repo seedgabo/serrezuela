@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { Api } from "../../providers/api";
 import { AddTicketPage } from "../add-ticket/add-ticket";
 import { VerTicketPage } from "../ver-ticket/ver-ticket";
@@ -10,7 +10,12 @@ import { VerTicketPage } from "../ver-ticket/ver-ticket";
 })
 export class TicketsPage {
 	query = "";
-	constructor(public navCtrl: NavController, public navParams: NavParams, public api: Api) {
+	filters = {
+		'completado': true,
+		'abierto': true,
+		'en curso': true,
+	}
+	constructor(public navCtrl: NavController, public navParams: NavParams, public api: Api, public alert: AlertController) {
 
 	}
 	ionViewDidLoad() {
@@ -42,16 +47,61 @@ export class TicketsPage {
 	}
 
 	filter() {
-		if (this.query === "") {
-			return this.api.tickets;
-		}
 		return this.api.tickets.filter((t) => {
-			return t.titulo.toLowerCase().indexOf(this.query.toLowerCase()) > -1 ||
-				t.contenido.toLowerCase().indexOf(this.query.toLowerCase()) > -1 ||
-				t.estado.toLowerCase().indexOf(this.query.toLowerCase()) > -1 ||
-				(t.categoria && t.categoria.nombre.toLowerCase().indexOf(this.query.toLowerCase()) > -1)
+			var resp = true;
+			if (this.query !== "")
+				resp = t.contenido.toLowerCase().indexOf(this.query.toLowerCase()) > -1 ||
+					t.estado.toLowerCase().indexOf(this.query.toLowerCase()) > -1 ||
+					(t.categoria && t.categoria.nombre.toLowerCase().indexOf(this.query.toLowerCase()) > -1)
+
+			if (!resp) return false;
+			if (!this.filters[t.estado] === undefined) return true;
+			return this.filters[t.estado];
 		});
 	}
+
+	alterFilters() {
+		this.alert.create({
+			title: "Filtrar Por:",
+			inputs: [
+				{
+					value: 'completado',
+					label: 'Completados',
+					type: 'checkbox',
+					checked: this.filters.completado,
+					name: 'completado'
+				},
+				{
+					value: 'abierto',
+					label: 'Abiertos',
+					type: 'checkbox',
+					checked: this.filters.abierto,
+					name: 'abierto'
+				},
+				{
+					value: 'en curso',
+					label: 'En Curso',
+					type: 'checkbox',
+					checked: this.filters['en curso'],
+					name: 'en curso'
+				}
+			],
+			buttons: [
+				{
+					text: 'Filtrar',
+					handler: (data) => {
+						console.log(data);
+						this.filters.completado = data.indexOf('completado') > -1;
+						this.filters['en curso'] = data.indexOf('en curso') > -1;
+						this.filters.abierto = data.indexOf('abierto') > -1;
+						console.log(this.filters);
+					}
+				}
+			]
+		})
+			.present();
+	}
+
 	verTicket(ticket) {
 		this.navCtrl.push(VerTicketPage, { ticket: ticket });
 	}
