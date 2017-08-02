@@ -10,11 +10,14 @@
 
 </ion-header>
 <ion-content>
+  <ion-refresher (ionRefresh)="getTicket($event)" pullingText="Empuja para actualizar" refreshingText="Cargando...">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <div padding>
-    <h3>{{ticket.titulo}}</h3>
     <div style="float:right" text-right>
       <ion-badge [ngClass]="ticket.estado">{{ticket.estado}}</ion-badge>
     </div>
+    <h3>{{ticket.titulo}}</h3>
     <div text-center *ngIf="ticket.image_id>0">
       <img [src]="ticket.image.url" alt="" style="height:100px;max-width:100px;margin: 0 auto;">
     </div>
