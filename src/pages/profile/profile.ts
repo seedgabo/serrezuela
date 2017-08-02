@@ -40,7 +40,15 @@ export class ProfilePage {
 			.catch(console.error)
 	}
 	updatePassword() {
-
+		this.api.put('users/' + this.api.user.id + "/password", { password: this.newpassword })
+			.then((data: any) => {
+				console.log(data);
+				this.api.password = this.newpassword;
+				this.newpassword = "";
+				this.newpassword_confirm = "";
+				this.toastUpdated();
+			})
+			.catch(console.error)
 	}
 
 	canUpdate() {
@@ -59,20 +67,24 @@ export class ProfilePage {
 		filer.click();
 	}
 	verFile(event) {
-		var reader: any = new FileReader();
-		reader.readAsDataURL(event.target.files[0])
-		reader.onload = (result) => {
-			var image = result.target.result;
-			this.api.post('images/upload/user/' + this.api.user.id, { image: image })
-				.then((data: any) => {
-					console.log(data);
-					this.api.user.imagen = data.image.url;
-					var user = JSON.parse(JSON.stringify(this.api.user))
-					this.api.saveData({ user: user });
-				})
-				.catch((err) => {
-					console.error(err);
-				});
-		};
+		try {
+			var reader: any = new FileReader();
+			reader.readAsDataURL(event.target.files[0])
+			reader.onload = (result) => {
+				var image = result.target.result;
+				this.api.post('images/upload/user/' + this.api.user.id, { image: image })
+					.then((data: any) => {
+						console.log(data);
+						this.api.user.imagen = data.image.url;
+						var user = JSON.parse(JSON.stringify(this.api.user))
+						this.api.saveData({ user: user });
+					})
+					.catch((err) => {
+						console.error(err);
+					});
+			};
+		} catch (error) {
+			console.error(error)
+		}
 	}
 }
