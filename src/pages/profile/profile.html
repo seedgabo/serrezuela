@@ -1,0 +1,54 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Mi Perfil</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div text-center style="height:80px" (click)="askFile()">
+    <img [src]="api.user.imagen" alt="" class="avatar">
+    <input id="input-file" type="file" name="image" accept="image/*" style="display:none" (change)="verFile($event)">
+  </div>
+  <ion-card padding>
+    <ion-card-title>Mis Datos</ion-card-title>
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Nombre</ion-label>
+        <ion-input [(ngModel)]="user.nombre"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Email</ion-label>
+        <ion-input [(ngModel)]="user.email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Perfil</ion-label>
+        <ion-select [(ngModel)]="user.departamento">
+          <ion-option value="tenista">Tenista</ion-option>
+          <ion-option value="golfista">Golfista</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <div text-center>
+      <button [disabled]="!canUpdate()" ion-button color="secondary" (click)="updateUser()">Guardar</button>
+    </div>
+  </ion-card>
+  <ion-card padding>
+    <ion-card-title>Cambiar Contrasena</ion-card-title>
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Nueva Contrasena</ion-label>
+        <ion-input type="password" [(ngModel)]="newpassword"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Confirmar Contrasena</ion-label>
+        <ion-input type="password" [(ngModel)]="newpassword_confirm"></ion-input>
+      </ion-item>
+    </ion-list>
+    <div text-center>
+      <button [disabled]="!canPassword()" ion-button color="secondary" (click)="updatePassword()">Cambiar Contrasena</button>
+    </div>
+  </ion-card>
+</ion-content>

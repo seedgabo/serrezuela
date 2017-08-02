@@ -20,6 +20,7 @@ import { VerTicketPage } from "../pages/ver-ticket/ver-ticket";
 
 
 import { CodePush } from '@ionic-native/code-push';
+import { ProfilePage } from "../pages/profile/profile";
 
 @NgModule({
 	declarations: [
@@ -29,6 +30,7 @@ import { CodePush } from '@ionic-native/code-push';
 		TicketsPage,
 		AddTicketPage,
 		VerTicketPage,
+		ProfilePage,
 		LoginPage
 	],
 	imports: [
@@ -45,6 +47,7 @@ import { CodePush } from '@ionic-native/code-push';
 		TicketsPage,
 		AddTicketPage,
 		VerTicketPage,
+		ProfilePage,
 		LoginPage
 	],
 	providers: [

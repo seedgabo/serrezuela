@@ -14,7 +14,7 @@
 
 <ion-content no-padding no-margin>
   <div class="card-background-page">
-    <ion-card margin-vertical>
+    <ion-card margin-vertical (click)="pushProfile()">
       <img src="./assets/img/background-login.jpg" alt="">
       <div text-center>
         <img [src]="api.user.imagen" alt="" class="avatar">
