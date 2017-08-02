@@ -15,25 +15,32 @@
   <ion-refresher (ionRefresh)="getTickets($event)" pullingText="Empuja para actualizar" refreshingText="Cargando...">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <ion-card (click)="verTicket(ticket)" *ngFor="let ticket of filter()">
-    <ion-card-content>
-      <ion-card-title ion-text color="primary">
-        {{ticket.titulo}}
-      </ion-card-title>
-
-      <p [innerHTML]="ticket.contenido"></p>
-      <div text-left *ngIf="ticket.categoria">
-        <ion-chip color="light">
-          <ion-label>
-            {{ticket.categoria.nombre}}
-          </ion-label>
-        </ion-chip>
-        <ion-badge item-right [ngClass]="ticket.estado" style="float:right">
-          {{ticket.estado}}
-        </ion-badge>
-      </div>
-    </ion-card-content>
-  </ion-card>
+  <div *ngIf="this.api.tickets">
+    <h3 class="title" text-center ion-text color="primary" *ngIf="this.api.tickets.length === 0">
+      No tienes tickets
+    </h3>
+    <ion-card (click)="verTicket(ticket)" *ngFor="let ticket of filter()">
+      <ion-card-content>
+        <ion-card-title ion-text color="primary">
+          {{ticket.titulo}}
+        </ion-card-title>
+        <div text-center *ngIf="ticket.image_id>0">
+          <img [src]="ticket.image.url" alt="" style="height:100px;max-width:100px;margin: 0 auto;">
+        </div>
+        <p [innerHTML]="ticket.contenido"></p>
+        <div text-left *ngIf="ticket.categoria">
+          <ion-chip color="light">
+            <ion-label>
+              {{ticket.categoria.nombre}}
+            </ion-label>
+          </ion-chip>
+          <ion-badge item-right [ngClass]="ticket.estado" style="float:right">
+            {{ticket.estado}}
+          </ion-badge>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
   <ion-fab bottom right>
     <button ion-fab (click)="addTicket()">
           <ion-icon name="add"></ion-icon>
