@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { Api } from "../../providers/api";
 
 @Component({
@@ -14,11 +14,11 @@ export class ProfilePage {
 		email: '',
 		departamento: '',
 	};
-	constructor(public navCtrl: NavController, public navParams: NavParams, public api: Api) {
+	constructor(public navCtrl: NavController, public navParams: NavParams, public api: Api, public toast: ToastController) {
 		this.user = {
 			nombre: this.api.user.nombre,
 			email: this.api.user.email,
-			departamento: 'Socio',
+			departamento: this.api.user.departamento,
 		}
 	}
 
@@ -31,9 +31,11 @@ export class ProfilePage {
 				console.log(data);
 				this.api.user.nombre = data.nombre;
 				this.api.user.email = data.email;
-				this.api.username = data.username
 				this.api.user.departamento = data.departamento;
-				this.api.saveData(this.api.user);
+				this.api.username = data.username
+				var user = JSON.parse(JSON.stringify(this.api.user))
+				this.api.saveData({ user: user });
+				this.toastUpdated();
 			})
 			.catch(console.error)
 	}
@@ -46,6 +48,10 @@ export class ProfilePage {
 	}
 	canPassword() {
 		return this.newpassword.length > 5 && this.newpassword === this.newpassword_confirm;
+	}
+
+	toastUpdated() {
+		this.toast.create({ message: "Usuario Actualizado", position: 'bottom', duration: 2000 }).present();
 	}
 
 	askFile() {
@@ -61,7 +67,8 @@ export class ProfilePage {
 				.then((data: any) => {
 					console.log(data);
 					this.api.user.imagen = data.image.url;
-					this.api.saveData(this.api.user);
+					var user = JSON.parse(JSON.stringify(this.api.user))
+					this.api.saveData({ user: user });
 				})
 				.catch((err) => {
 					console.error(err);
