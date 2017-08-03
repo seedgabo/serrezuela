@@ -85,7 +85,10 @@
     </platform>
     <engine name="android" spec="^6.2.3" />
     <engine name="browser" spec="^4.1.0" />
+<<<<<<< HEAD
     <engine name="ios" spec="^4.4.0" />
+=======
+>>>>>>> 57394acd6d140b77f7eb96f772b07fe9cba6e5d2
     <plugin name="cordova-plugin-code-push" spec="^1.9.5-beta" />
     <plugin name="cordova-plugin-console" spec="^1.0.7" />
     <plugin name="cordova-plugin-device" spec="^1.1.6" />
