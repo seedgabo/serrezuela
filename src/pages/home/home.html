@@ -1,52 +1,37 @@
 <ion-header>
-    <ion-navbar color="primary">
-        <button ion-button menuToggle>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-        <ion-title>
-            Club Serrezuela
-        </ion-title>
-        <ion-buttons end>
-            <img src="./assets/img/logo.png" style="height:30px;" alt="">
-        </ion-buttons>
-    </ion-navbar>
+    <ion-title>
+      Club Serrezuela
+    </ion-title>
+    <ion-buttons end>
+      <img src="./assets/img/logo.png" style="height:30px;" alt="">
+    </ion-buttons>
+  </ion-navbar>
 </ion-header>
 
 <ion-content no-padding no-margin>
-    <div class="card-background-page">
-        <ion-card margin-vertical>
-            <img src="./assets/img/background-login.jpg" alt="">
-            <div text-center>
-                <img [src]="api.user.imagen" alt="" class="avatar">
-            </div>
-            <div class="card-title">{{api.user.nombre}}</div>
-            <div class="card-subtitle">{{api.user.parentesco}}</div>
-        </ion-card>
-    </div>
-    <div>
-        <ion-card color="secondary" tappable (click)="gotoTickets()">
-            <ion-card-content padding text-center>
-                <ion-icon name="bookmarks" style="font-size:38px"></ion-icon>
-                <br>
-                <br>
-                <h2>Tickets</h2>
-            </ion-card-content>
-        </ion-card>
-        <ion-card color="danger">
-            <ion-card-content padding text-center>
-                <ion-icon name="information-circle" style="font-size:38px"></ion-icon>
-                <br>
-                <br>
-                <h2>El Club</h2>
-            </ion-card-content>
-        </ion-card>
-        <ion-card color="favorite">
-            <ion-card-content padding text-center>
-                <ion-icon name="calendar" style="font-size:38px"></ion-icon>
-                <br>
-                <br>
-                <h2>Eventos</h2>
-            </ion-card-content>
-        </ion-card>
-    </div>
+  <div class="card-background-page">
+    <ion-card margin-vertical (click)="pushProfile()">
+      <img src="./assets/img/background-login.jpg" alt="">
+      <div text-center>
+        <img [src]="api.user.imagen" alt="" class="avatar">
+      </div>
+      <div class="card-title">{{api.user.nombre}}</div>
+      <div class="card-subtitle">{{api.user.parentesco}}</div>
+    </ion-card>
+  </div>
+  <ion-card class="ticket-card" xcolor="secondary" tappable (click)="gotoTickets()">
+    <ion-card-content padding text-center>
+      <ion-icon name="bookmarks" style="font-size:38px" color="secondary"></ion-icon>
+      <br>
+      <br>
+      <h2 ion-text color="secondary">Tickets</h2>
+    </ion-card-content>
+  </ion-card>
+  <div>
+
+  </div>
 </ion-content>

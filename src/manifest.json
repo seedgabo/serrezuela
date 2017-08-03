@@ -1,13 +1,15 @@
 {
-  "name": "Ionic",
-  "short_name": "Ionic",
+  "name": "Club Serrezuela",
+  "short_name": "Club Serrezuela",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [{
-    "src": "assets/imgs/logo.png",
+    "src": "assets/img/logo.png",
     "sizes": "512x512",
     "type": "image/png"
   }],
-  "background_color": "#4e8ef7",
-  "theme_color": "#4e8ef7"
+  "background_color": "#dd4b39",
+
+  "theme_color": "#dd4b39"
+
 }

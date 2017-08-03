@@ -19,37 +19,41 @@ import { AddTicketPage } from "../pages/add-ticket/add-ticket";
 import { VerTicketPage } from "../pages/ver-ticket/ver-ticket";
 
 
+import { CodePush } from '@ionic-native/code-push';
+import { ProfilePage } from "../pages/profile/profile";
+
 @NgModule({
-  declarations: [
-    MyApp,
-    HomePage,
-    ListPage,
-    TicketsPage,
-    AddTicketPage,
-    VerTicketPage,
-    LoginPage
-  ],
-  imports: [
-    BrowserModule,
-    HttpModule,
-    IonicStorageModule.forRoot(),
-    IonicModule.forRoot(MyApp),
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    HomePage,
-    ListPage,
-    TicketsPage,
-    AddTicketPage,
-    VerTicketPage,
-    LoginPage
-  ],
-  providers: [
-    Api,
-    StatusBar,
-    SplashScreen,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
-  ]
+	declarations: [
+		MyApp,
+		HomePage,
+		ListPage,
+		TicketsPage,
+		AddTicketPage,
+		VerTicketPage,
+		ProfilePage,
+		LoginPage
+	],
+	imports: [
+		BrowserModule,
+		HttpModule,
+		IonicStorageModule.forRoot(),
+		IonicModule.forRoot(MyApp),
+	],
+	bootstrap: [IonicApp],
+	entryComponents: [
+		MyApp,
+		HomePage,
+		ListPage,
+		TicketsPage,
+		AddTicketPage,
+		VerTicketPage,
+		ProfilePage,
+		LoginPage
+	],
+	providers: [
+		Api,
+		StatusBar, SplashScreen, CodePush,
+		{ provide: ErrorHandler, useClass: IonicErrorHandler }
+	]
 })
 export class AppModule { }
