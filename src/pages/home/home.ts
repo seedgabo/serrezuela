@@ -11,9 +11,7 @@ import { ProfilePage } from "../profile/profile";
 })
 export class HomePage {
 	random = 0;
-	constructor(public navCtrl: NavController, public api: Api) {
-
-	}
+	constructor(public navCtrl: NavController, public api: Api) { }
 
 	ionViewDidEnter() {
 		this.random = Math.random() * 2000;
@@ -30,7 +28,6 @@ export class HomePage {
 		});
 		return count;
 	}
-
 	gotoTickets() {
 		this.navCtrl.push(TicketsPage)
 	}

@@ -14,7 +14,7 @@
   <ion-list *ngIf="api.user.notificaciones">
     <ion-item-sliding *ngFor="let not of api.user.notificaciones" #item>
       <button ion-item (click)="verNotificacion(not)">
-             <h2 tet-center>{{ not.titulo }}</h2>
+             <h2 text-center>{{ not.titulo }}</h2>
              <p>{{not.mensaje}}</p>
              <p text-right>{{not.created_at}}</p>
              <ion-icon item-right color="primary" [name]="not.leido == 0 ? 'notifications' : 'ios-notifications-outline'"></ion-icon>
