@@ -36,6 +36,7 @@ import { ProfilePage } from "../pages/profile/profile";
 	imports: [
 		BrowserModule,
 		HttpModule,
+		MomentModule,
 		IonicStorageModule.forRoot(),
 		IonicModule.forRoot(MyApp),
 	],

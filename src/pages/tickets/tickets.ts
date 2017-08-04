@@ -32,7 +32,7 @@ export class TicketsPage {
 		this.getTickets();
 	}
 	getTickets(refresher = null) {
-		this.api.get('tickets?with[]=image&with[]=categoria&with[]=user&with[]=guardian&where[user_id]=' + this.api.user.id)
+		this.api.get('tickets?withCount[]=comentarios&with[]=image&with[]=categoria&with[]=user&with[]=guardian&where[user_id]=' + this.api.user.id)
 			.then((data) => {
 				console.log(data)
 				this.api.tickets = data;
