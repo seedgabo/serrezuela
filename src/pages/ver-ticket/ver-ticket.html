@@ -28,16 +28,33 @@
       <ion-label floating>Agregar Seguimiento</ion-label>
       <ion-textarea [(ngModel)]="seguimiento"></ion-textarea>
     </ion-item>
-    <button ion-button [disabled]="disabled" full (click)="addSeguimiento()" *ngIf="seguimiento.length>1">Agregar</button>
+    <ion-grid *ngIf="seguimiento.length>1">
+      <ion-row>
+        <ion-col col-3>
+          <button (click)="askFile()" color="secondary" clear ion-button icon-only *ngIf="!image">
+            <ion-icon name="camera"></ion-icon>
+          </button>
+          <input type="file" (change)="verFile($event)" style="display:none" id="input-file">
+          <img [src]="image" *ngIf="image" alt="">
+        </ion-col>
+        <ion-col>
+          <button ion-button [disabled]="disabled" full (click)="addSeguimiento()">Agregar</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
     <ion-list-header>
       <span ion-text color="primary">
-              Seguimientos
-            </span>
+          Seguimientos
+      </span>
     </ion-list-header>
     <ion-item *ngFor="let comentario of comentarioFilters(); let i =index">
+      <ion-thumbnail *ngIf="comentario.image" item-left>
+        <img [src]="comentario.image.url" alt="">
+      </ion-thumbnail>
       <p>
         {{ comentario.texto }}
       </p>
+
       <div text-right *ngIf="comentario.user">
         {{comentario.user.nombre}}
       </div>
