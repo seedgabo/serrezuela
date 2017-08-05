@@ -1,66 +1,66 @@
 <ion-header>
-  <ion-navbar color="primary">
-    <ion-title>Ticket # {{ticket.id}}</ion-title>
-    <ion-buttons end>
-      <button ion-button (click)="options()" icon-only>
+    <ion-navbar color="primary">
+        <ion-title>Ticket # {{ticket.id}}</ion-title>
+        <ion-buttons end>
+            <button ion-button (click)="options()" icon-only>
               <ion-icon name="more"></ion-icon>
             </button>
-    </ion-buttons>
-  </ion-navbar>
+        </ion-buttons>
+    </ion-navbar>
 
 </ion-header>
 <ion-content>
-  <ion-refresher (ionRefresh)="getTicket($event)" pullingText="Empuja para actualizar" refreshingText="Cargando...">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
-  <div padding>
-    <div style="float:right" text-right>
-      <ion-badge [ngClass]="ticket.estado">{{ticket.estado}}</ion-badge>
+    <ion-refresher (ionRefresh)="getTicket($event)" pullingText="Empuja para actualizar" refreshingText="Cargando...">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <div padding>
+        <div style="float:right" text-right>
+            <ion-badge [ngClass]="ticket.estado">{{ticket.estado}}</ion-badge>
+        </div>
+        <h3>{{ticket.titulo}}</h3>
+        <div text-center *ngIf="ticket.image_id>0">
+            <img [src]="ticket.image.url" alt="" style="height:100px;max-width:100px;margin: 0 auto;">
+        </div>
+        <div [innerHTML]="ticket.contenido"></div>
     </div>
-    <h3>{{ticket.titulo}}</h3>
-    <div text-center *ngIf="ticket.image_id>0">
-      <img [src]="ticket.image.url" alt="" style="height:100px;max-width:100px;margin: 0 auto;">
-    </div>
-    <div [innerHTML]="ticket.contenido"></div>
-  </div>
-  <ion-list inset>
-    <ion-item>
-      <ion-label floating>Agregar Seguimiento</ion-label>
-      <ion-textarea [(ngModel)]="seguimiento"></ion-textarea>
-    </ion-item>
-    <ion-grid *ngIf="seguimiento.length>1">
-      <ion-row>
-        <ion-col col-3>
-          <button (click)="askFile()" color="secondary" clear ion-button icon-only *ngIf="!image">
+    <ion-list inset>
+        <ion-item>
+            <ion-label floating>Agregar Seguimiento</ion-label>
+            <ion-textarea [(ngModel)]="seguimiento"></ion-textarea>
+        </ion-item>
+        <ion-grid *ngIf="seguimiento.length>1">
+            <ion-row>
+                <ion-col col-3>
+                    <button (click)="askFile()" color="secondary" clear ion-button icon-only *ngIf="!image">
             <ion-icon name="camera"></ion-icon>
           </button>
-          <input type="file" (change)="verFile($event)" style="display:none" id="input-file">
-          <img [src]="image" *ngIf="image" alt="">
-        </ion-col>
-        <ion-col>
-          <button ion-button [disabled]="disabled" full (click)="addSeguimiento()">Agregar</button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-    <ion-list-header>
-      <span ion-text color="primary">
+                    <input type="file" accept="image/*" (change)="verFile($event)" style="display:none" id="input-file">
+                    <img [src]="image" *ngIf="image" alt="">
+                </ion-col>
+                <ion-col>
+                    <button ion-button [disabled]="disabled" full (click)="addSeguimiento()">Agregar</button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-list-header>
+            <span ion-text color="primary">
           Seguimientos
       </span>
-    </ion-list-header>
-    <ion-item *ngFor="let comentario of comentarioFilters(); let i =index">
-      <ion-thumbnail *ngIf="comentario.image" item-left>
-        <img [src]="comentario.image.url" alt="">
-      </ion-thumbnail>
-      <p>
-        {{ comentario.texto }}
-      </p>
+        </ion-list-header>
+        <ion-item *ngFor="let comentario of comentarioFilters(); let i =index">
+            <ion-thumbnail *ngIf="comentario.image" item-left>
+                <img [src]="comentario.image.url" alt="">
+            </ion-thumbnail>
+            <p>
+                {{ comentario.texto }}
+            </p>
 
-      <div text-right *ngIf="comentario.user">
-        {{comentario.user.nombre}}
-      </div>
-      <button (click)="deleteComentario(comentario,i)" ion-button item-right icon-only color="danger" clear *ngIf="comentario.user && comentario.user.id === api.user.id">
+            <div text-right *ngIf="comentario.user">
+                {{comentario.user.nombre}}
+            </div>
+            <button (click)="deleteComentario(comentario,i)" ion-button item-right icon-only color="danger" clear *ngIf="comentario.user && comentario.user.id === api.user.id">
               <ion-icon name="trash"></ion-icon>
             </button>
-    </ion-item>
-  </ion-list>
+        </ion-item>
+    </ion-list>
 </ion-content>
