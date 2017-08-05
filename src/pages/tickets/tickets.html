@@ -42,6 +42,11 @@
           <ion-badge item-right [ngClass]="ticket.estado" style="float:right">
             {{ticket.estado}}
           </ion-badge>
+          <p text-right>
+            <ion-note>
+              {{ticket.comentarios_count}} seguimiento{{ticket.comentarios_count>1?'s':''}}
+            </ion-note>
+          </p>
         </div>
       </ion-card-content>
     </ion-card>

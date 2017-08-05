@@ -4,10 +4,13 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>
-      Club Serrezuela
+      <img src="./assets/img/logo.png" style="height:30px;" alt=""> Club Serrezuela
     </ion-title>
     <ion-buttons end>
-      <img src="./assets/img/logo.png" style="height:30px;" alt="">
+      <button ion-button icon-only small (click)="gotoNotificaciones()">
+        <ion-icon name="ios-notifications"></ion-icon>
+        <ion-badge *ngIf="api.user.notificaciones"  color="secondary">{{countNoti()}}</ion-badge>
+      </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
@@ -17,7 +20,7 @@
     <ion-card margin-vertical (click)="pushProfile()">
       <img src="./assets/img/background-login.jpg" alt="">
       <div text-center>
-        <img [src]="api.user.imagen" alt="" class="avatar">
+        <img [src]="api.user.imagen+'?rnd='+random" alt="" class="avatar">
       </div>
       <div class="card-title">{{api.user.nombre}}</div>
       <div class="card-subtitle">{{api.user.parentesco}}</div>
