@@ -1,41 +1,41 @@
 <ion-header>
-  <ion-navbar color="primary">
-    <ion-title>{{ticket.id ?'Editar':'Agregar'}} Ticket</ion-title>
-  </ion-navbar>
+    <ion-navbar color="primary">
+        <ion-title>{{ticket.id ?'Editar':'Agregar'}} Ticket</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <ion-list>
-    <ion-item>
-      <ion-label floating> Titulo </ion-label>
-      <ion-input [(ngModel)]="ticket.titulo"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label floating> Contenido </ion-label>
-      <ion-textarea [(ngModel)]="ticket.contenido"></ion-textarea>
-    </ion-item>
-    <ion-item>
-      <ion-label floating>Categoria</ion-label>
-      <ion-select [(ngModel)]="ticket.categoria_id">
-        <ion-option [value]="categoria.id" *ngFor="let categoria of api.categorias">
-          {{categoria.nombre}}
-        </ion-option>
-      </ion-select>
-    </ion-item>
-    <input id="input-file" type="file" style="display:none" accept="image/*" (change)="verFile($event)">
-    <div text-center>
-      <img [src]="image" *ngIf="image" style="height:100px; margin-top:10px" alt="" (click)="askFile()">
-      <button ion-button icon-only large full color="light" (click)="askFile()" *ngIf="!image">
+    <ion-list>
+        <ion-item>
+            <ion-label floating> Titulo </ion-label>
+            <ion-input [(ngModel)]="ticket.titulo"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating> Contenido </ion-label>
+            <ion-textarea [(ngModel)]="ticket.contenido"></ion-textarea>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Categoria</ion-label>
+            <ion-select [(ngModel)]="ticket.categoria_id">
+                <ion-option [value]="categoria.id" *ngFor="let categoria of api.categorias">
+                    {{categoria.nombre}}
+                </ion-option>
+            </ion-select>
+        </ion-item>
+        <input id="input-file" type="file" style="display:none" accept="image/*" (change)="verFile($event)">
+        <div text-center>
+            <img [src]="image" *ngIf="image" style="height:100px; margin-top:10px" alt="" (click)="askFile()">
+            <button ion-button icon-only large full color="light" (click)="askFile()" *ngIf="!image">
             <ion-icon name="camera" large></ion-icon>
           </button>
-    </div>
+        </div>
 
-  </ion-list>
+    </ion-list>
 </ion-content>
 <ion-footer>
-  <ion-toolbar>
-    <button [disabled]="!canSave()" ion-button (click)="save()" full large>Guardar</button>
-  </ion-toolbar>
+    <ion-toolbar>
+        <button [disabled]="!canSave() || loading" ion-button (click)="save()" full large>Guardar</button>
+    </ion-toolbar>
 </ion-footer>

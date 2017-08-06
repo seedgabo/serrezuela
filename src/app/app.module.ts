@@ -1,3 +1,4 @@
+import { NotificationesPage } from './../pages/notificationes/notificationes';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
@@ -31,11 +32,13 @@ import { ProfilePage } from "../pages/profile/profile";
 		AddTicketPage,
 		VerTicketPage,
 		ProfilePage,
+		NotificationesPage,
 		LoginPage
 	],
 	imports: [
 		BrowserModule,
 		HttpModule,
+		MomentModule,
 		IonicStorageModule.forRoot(),
 		IonicModule.forRoot(MyApp),
 	],
@@ -48,6 +51,7 @@ import { ProfilePage } from "../pages/profile/profile";
 		AddTicketPage,
 		VerTicketPage,
 		ProfilePage,
+		NotificationesPage,
 		LoginPage
 	],
 	providers: [

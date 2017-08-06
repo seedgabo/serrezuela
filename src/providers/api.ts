@@ -2,7 +2,7 @@ import { Injectable, NgZone } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-import { PopoverController, ToastController, Events } from "ionic-angular";
+import { Events } from "ionic-angular";
 import { Storage } from '@ionic/storage';
 
 
@@ -13,7 +13,6 @@ import { Storage } from '@ionic/storage';
 // import Echo from 'laravel-echo';
 // import Pusher from 'pusher-js';
 import moment from 'moment';
-declare var window: any;
 moment.locale('es');
 // window.Pusher = Pusher;
 
@@ -21,6 +20,7 @@ moment.locale('es');
 export class Api {
   sound: HTMLAudioElement;
   url = "http://newton.eycproveedores.com/serrezuela/public/";
+  // url = "http://localhost/newton/public/";
   username = "";
   password = "";
   user;
